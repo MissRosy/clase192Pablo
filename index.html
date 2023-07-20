@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="./up.js"></script>
+    <script src="./move.js"></script>
+    <script src="./trash.js"></script>
+    <script src="./choque.js"></script>
+</head>
+<body>
+    <a-scene id="scene" background="color:black">
+        <a-assets>
+        <a-asset-item id="mars" src="models/mars/scene.gltf"></a-asset-item>
+        <a-asset-item id="starship" src="models/spacex_starship/scene.gltf"></a-asset-item>
+        <a-asset-item id="earth" src="models/earth/scene.gltf"></a-asset-item>
+        <a-asset-item id="satellite" src="models/satellite/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-entity id="1" gltf-model="#earth" position="0 -5 -10" rotation="0 0 0" scale="0.05 0.05 0.05"></a-entity>
+        <a-entity id="2" gltf-model="#mars" position="0 0 -25" rotation="0 0 0"></a-entity>
+        <a-asset-item
+        id="terrainMap"
+        src="./assets/models/night_sky_visible_spectrum_monochromatic/scene.gltf"
+      ></a-asset-item>
+
+        <!-- Terreno -->
+      <a-entity
+      id="terrain"
+      gltf-model="#terrainMap"
+      position="0 0 -100"
+      scale="3 3 3"
+      animation="property: rotation; to: 0 100 0;easing:linear; loop: true; dur: 150000"
+      trash
+    >
+    </a-entity>
+        
+        <a-entity id="camera" camera position="0 1.6 0"  move up>
+        <a-entity id="nave" gltf-model="#starship" position="0 5 -10" rotation="0 0 0" scale="0.001 0.001 0.001"
+        dynamic-body="mass: 0" choque></a-entity> 
+        
+    </a-entity>
+    </a-scene>
+</body>
+</html>
